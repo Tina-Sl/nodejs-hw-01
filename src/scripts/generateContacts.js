@@ -6,8 +6,8 @@ export const generateContacts = async (number) => {
   const text = number === 1 ? 'contact' : 'contacts';
   const contacts = await readContacts();
   if (contacts) {
-    const newContactsList = Array(number).fill(0).map(createFakeContact);
-    contacts.push(...newContactsList);
+    const newContacts = Array.from({ length: number }, createFakeContact);
+    contacts.push(...newContacts);
     if (await writeContacts(contacts)) {
       console.log(`generateContacts: ${number} ${text} added`);
       return;
@@ -16,4 +16,4 @@ export const generateContacts = async (number) => {
   console.log(`generateContacts: ${number} ${text} were not added`);
 };
 
-generateContacts(2);
+generateContacts(5);

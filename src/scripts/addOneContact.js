@@ -5,8 +5,7 @@ import { writeContacts } from '../utils/writeContacts.js';
 export const addOneContact = async () => {
   let contacts = await readContacts();
   if (contacts) {
-    const newContact = Array.from({ length: 1 }, createFakeContact);
-    contacts = contacts.concat(newContact);
+    contacts.push(createFakeContact());
     if (await writeContacts(contacts)) {
       console.log('addOneContact: contact added');
       return;
